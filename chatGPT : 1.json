@@ -1,0 +1,395 @@
+[
+  {
+    "input": "ظبطلي رتبة VIP ولونها ذهبي",
+    "dialect": "Saudi/Gulf",
+    "intent": "create_role",
+    "entities": {
+      "role_name": "VIP",
+      "color": "gold"
+    }
+  },
+  {
+    "input": "سو لي رتبة إدارة باللون الأحمر",
+    "dialect": "Saudi/Gulf",
+    "intent": "create_role",
+    "entities": {
+      "role_name": "إدارة",
+      "color": "red"
+    }
+  },
+  {
+    "input": "أبغى رتبة اسمها Elite ولونها أزرق",
+    "dialect": "Saudi/Gulf",
+    "intent": "create_role",
+    "entities": {
+      "role_name": "Elite",
+      "color": "blue"
+    }
+  },
+  {
+    "input": "سويلي روم شات جديد",
+    "dialect": "Saudi/Gulf",
+    "intent": "create_channel",
+    "entities": {
+      "channel_name": "شات"
+    }
+  },
+  {
+    "input": "افتح روم اسمه القوانين",
+    "dialect": "Saudi/Gulf",
+    "intent": "create_channel",
+    "entities": {
+      "channel_name": "القوانين"
+    }
+  },
+  {
+    "input": "احذف آخر 50 رسالة",
+    "dialect": "Saudi/Gulf",
+    "intent": "purge_channel",
+    "entities": {
+      "limit": 50
+    }
+  },
+  {
+    "input": "امسح آخر 200 رسالة",
+    "dialect": "Saudi/Gulf",
+    "intent": "purge_channel",
+    "entities": {
+      "limit": 200
+    }
+  },
+  {
+    "input": "احظر ذا العضو",
+    "dialect": "Saudi/Gulf",
+    "intent": "ban_user",
+    "entities": {
+      "target": "user"
+    }
+  },
+  {
+    "input": "بلك فلان من السيرفر",
+    "dialect": "Saudi/Gulf",
+    "intent": "ban_user",
+    "entities": {
+      "target": "فلان"
+    }
+  },
+  {
+    "input": "شيك إذا سيرفر ماين شغال",
+    "dialect": "Saudi/Gulf",
+    "intent": "check_mc_status",
+    "entities": {}
+  },
+  {
+    "input": "اعمل رتبة VIP لونها بنفسجي",
+    "dialect": "Egyptian",
+    "intent": "create_role",
+    "entities": {
+      "role_name": "VIP",
+      "color": "purple"
+    }
+  },
+  {
+    "input": "اعمل روم اسمه الألعاب",
+    "dialect": "Egyptian",
+    "intent": "create_channel",
+    "entities": {
+      "channel_name": "الألعاب"
+    }
+  },
+  {
+    "input": "امسح آخر 100 رسالة من الشات",
+    "dialect": "Egyptian",
+    "intent": "purge_channel",
+    "entities": {
+      "limit": 100
+    }
+  },
+  {
+    "input": "اطرد العضو ده",
+    "dialect": "Egyptian",
+    "intent": "ban_user",
+    "entities": {
+      "target": "user"
+    }
+  },
+  {
+    "input": "اعمله بان",
+    "dialect": "Egyptian",
+    "intent": "ban_user",
+    "entities": {
+      "target": "user"
+    }
+  },
+  {
+    "input": "شوف سيرفر ماين شغال ولا لأ",
+    "dialect": "Egyptian",
+    "intent": "check_mc_status",
+    "entities": {}
+  },
+  {
+    "input": "اعمل رتبة Staff",
+    "dialect": "Egyptian",
+    "intent": "create_role",
+    "entities": {
+      "role_name": "Staff"
+    }
+  },
+  {
+    "input": "افتح روم للميمز",
+    "dialect": "Egyptian",
+    "intent": "create_channel",
+    "entities": {
+      "channel_name": "ميمز"
+    }
+  },
+  {
+    "input": "امسح آخر 25 رسالة",
+    "dialect": "Egyptian",
+    "intent": "purge_channel",
+    "entities": {
+      "limit": 25
+    }
+  },
+  {
+    "input": "بان لفلان",
+    "dialect": "Egyptian",
+    "intent": "ban_user",
+    "entities": {
+      "target": "فلان"
+    }
+  },
+  {
+    "input": "اعملي رتبة VIP لونها أخضر",
+    "dialect": "Levantine",
+    "intent": "create_role",
+    "entities": {
+      "role_name": "VIP",
+      "color": "green"
+    }
+  },
+  {
+    "input": "اعمل قناة اسمها الترحيب",
+    "dialect": "Levantine",
+    "intent": "create_channel",
+    "entities": {
+      "channel_name": "الترحيب"
+    }
+  },
+  {
+    "input": "امحي آخر 80 رسالة",
+    "dialect": "Levantine",
+    "intent": "purge_channel",
+    "entities": {
+      "limit": 80
+    }
+  },
+  {
+    "input": "اطرد هاد الزلمة من السيرفر",
+    "dialect": "Levantine",
+    "intent": "ban_user",
+    "entities": {
+      "target": "user"
+    }
+  },
+  {
+    "input": "بند هاد العضو",
+    "dialect": "Levantine",
+    "intent": "ban_user",
+    "entities": {
+      "target": "user"
+    }
+  },
+  {
+    "input": "تأكد إذا سيرفر ماين شغال",
+    "dialect": "Levantine",
+    "intent": "check_mc_status",
+    "entities": {}
+  },
+  {
+    "input": "اعمل رتبة مود",
+    "dialect": "Levantine",
+    "intent": "create_role",
+    "entities": {
+      "role_name": "مود"
+    }
+  },
+  {
+    "input": "افتح روم للدردشة",
+    "dialect": "Levantine",
+    "intent": "create_channel",
+    "entities": {
+      "channel_name": "الدردشة"
+    }
+  },
+  {
+    "input": "امسح آخر 10 رسائل",
+    "dialect": "Levantine",
+    "intent": "purge_channel",
+    "entities": {
+      "limit": 10
+    }
+  },
+  {
+    "input": "اعمله بان فورًا",
+    "dialect": "Levantine",
+    "intent": "ban_user",
+    "entities": {
+      "target": "user"
+    }
+  },
+  {
+    "input": "سويلي رتبة VIP",
+    "dialect": "Iraqi",
+    "intent": "create_role",
+    "entities": {
+      "role_name": "VIP"
+    }
+  },
+  {
+    "input": "افتح قناة اسمها الأخبار",
+    "dialect": "Iraqi",
+    "intent": "create_channel",
+    "entities": {
+      "channel_name": "الأخبار"
+    }
+  },
+  {
+    "input": "امسح آخر 40 رسالة",
+    "dialect": "Iraqi",
+    "intent": "purge_channel",
+    "entities": {
+      "limit": 40
+    }
+  },
+  {
+    "input": "ابند هذا العضو",
+    "dialect": "Iraqi",
+    "intent": "ban_user",
+    "entities": {
+      "target": "user"
+    }
+  },
+  {
+    "input": "طرده من السيرفر",
+    "dialect": "Iraqi",
+    "intent": "ban_user",
+    "entities": {
+      "target": "user"
+    }
+  },
+  {
+    "input": "شيك على سيرفر الماين",
+    "dialect": "Iraqi",
+    "intent": "check_mc_status",
+    "entities": {}
+  },
+  {
+    "input": "سوي رتبة إدارة",
+    "dialect": "Iraqi",
+    "intent": "create_role",
+    "entities": {
+      "role_name": "إدارة"
+    }
+  },
+  {
+    "input": "افتح روم اسمه الدعم",
+    "dialect": "Iraqi",
+    "intent": "create_channel",
+    "entities": {
+      "channel_name": "الدعم"
+    }
+  },
+  {
+    "input": "امسح آخر 300 رسالة",
+    "dialect": "Iraqi",
+    "intent": "purge_channel",
+    "entities": {
+      "limit": 300
+    }
+  },
+  {
+    "input": "ابند فلان",
+    "dialect": "Iraqi",
+    "intent": "ban_user",
+    "entities": {
+      "target": "فلان"
+    }
+  },
+  {
+    "input": "سو رتبة Legend",
+    "dialect": "Gulf",
+    "intent": "create_role",
+    "entities": {
+      "role_name": "Legend"
+    }
+  },
+  {
+    "input": "سو روم للفعاليات",
+    "dialect": "Gulf",
+    "intent": "create_channel",
+    "entities": {
+      "channel_name": "الفعاليات"
+    }
+  },
+  {
+    "input": "امسح آخر 5 رسايل",
+    "dialect": "Gulf",
+    "intent": "purge_channel",
+    "entities": {
+      "limit": 5
+    }
+  },
+  {
+    "input": "بند هالشخص",
+    "dialect": "Gulf",
+    "intent": "ban_user",
+    "entities": {
+      "target": "user"
+    }
+  },
+  {
+    "input": "تأكد إذا سيرفر ماين أونلاين",
+    "dialect": "Gulf",
+    "intent": "check_mc_status",
+    "entities": {}
+  },
+  {
+    "input": "سو رتبة باسم Builder",
+    "dialect": "Gulf",
+    "intent": "create_role",
+    "entities": {
+      "role_name": "Builder"
+    }
+  },
+  {
+    "input": "افتح قناة اسمها الإدارة",
+    "dialect": "Gulf",
+    "intent": "create_channel",
+    "entities": {
+      "channel_name": "الإدارة"
+    }
+  },
+  {
+    "input": "امسح آخر 150 رسالة",
+    "dialect": "Gulf",
+    "intent": "purge_channel",
+    "entities": {
+      "limit": 150
+    }
+  },
+  {
+    "input": "اعط بان لهالعضو",
+    "dialect": "Gulf",
+    "intent": "ban_user",
+    "entities": {
+      "target": "user"
+    }
+  },
+  {
+    "input": "افحص حالة سيرفر ماينكرافت",
+    "dialect": "Gulf",
+    "intent": "check_mc_status",
+    "entities": {}
+  }
+]
