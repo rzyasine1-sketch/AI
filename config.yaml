@@ -1,0 +1,38 @@
+models:
+  deepseek:
+    name: "deepseek-r1:1.5b"
+    backend: "ollama"
+  qwen:
+    name: "qwen2.5:0.5b"
+    backend: "ollama"
+  llama:
+    name: "llama3.2:1b"
+    backend: "ollama"
+
+vision:
+  backend: "ollama"
+  model_name: "qwen3-vl:2b"
+  base_url: "http://127.0.0.1:11434"
+  timeout: 300
+
+pipeline:
+  max_cycles: 15
+  retry_count: 2
+  timeout: 300
+  quality_threshold: 0.75
+  no_improvement_cycles: 3
+
+cache:
+  enabled: true
+
+memory:
+  versioning: true
+  store_path: "memory_store"
+
+resources:
+  max_ram_percent: 80
+  max_cpu_percent: 85
+  max_disk_percent: 90
+
+logging:
+  level: "INFO"

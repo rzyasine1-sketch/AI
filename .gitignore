@@ -1,0 +1,64 @@
+# Python and tooling caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.tox/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# Secrets and credentials
+.env
+.env.*
+*.env
+*cookie*
+*secret*
+*token*
+kaggle.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Downloaded media, frames, and model weights
+*.mp4
+*.m4v
+*.mov
+*.mkv
+*.avi
+*.webm
+*.mpeg
+*.mpg
+*.safetensors
+*.gguf
+*.ckpt
+*.pt
+*.pth
+*.onnx
+
+# Runtime state and generated reports
+/cache/*.json
+/checkpoints/
+/cycles/
+/logs/
+/memory_store/
+/control/STOP
+/quality_history.json
+/data/
+/training/*.jsonl
+/training/visual/
+/training/local_video/
+/training/real_visual/
+/training/vision_mock/
+/training/vision_real/
+/training/lora/
+
+# Build output and OS metadata
+/build/
+/dist/
+*.egg-info/
+.DS_Store
