@@ -8,7 +8,7 @@ This stage adds a real YouTube channel inventory and sampling path, a yt-dlp dow
 
 | Check | Result | Evidence |
 |---|---|---|
-| Unit/integration suite | PASS | `python3 -m pytest -q`: 31 passed |
+| Unit/integration suite | PASS | `python3 -m pytest -q`: 35 passed |
 | Lint | PASS | `ruff check .`: All checks passed |
 | Python dependencies | PASS | `python3 -m pip check`: No broken requirements found |
 | Frame extraction component | PASS | Test creates a temporary 10-frame AVI, extracts 4 JPEGs, reopens each image, and checks non-empty pixel data |
@@ -30,6 +30,23 @@ The temporary AVI/JPEG checks validate the local decoding component only. They a
 | Text-only model rejection | PASS (SIMULATED ENDPOINT TEST ONLY) | Unit test verifies an installed model that does not declare Vision capability is rejected. |
 
 **Real VLM inference status: NOT VERIFIED.** No Vision-Language Model was available to read an image. The real-mode path stops rather than returning mock output. The `mock_complete` status verifies pipeline wiring only, not real vision understanding.
+
+## Local MP4 Folder Pipeline
+
+| Check | Result | Evidence |
+|---|---|---|
+| Recursive MP4 discovery | PASS | Unit test discovers top-level and nested `.mp4`/`.MP4` files and ignores AVI/TXT files. |
+| Local pipeline integration | PASS (SIMULATED VLM/AGENTS) | Tests create two decodable MP4 fixtures, extract 4 frames, pass images through a Vision backend test double, run DeepSeek→Qwen→Llama for two cycles, create image-backed dataset/memory/checkpoints, then resume without repeating inference. |
+| Source preservation | PASS | Integration test verifies both source MP4 sizes remain unchanged; implementation opens originals for decode and writes only under `data/local_videos/`. |
+| Real local CLI attempt | BLOCKED | `python3 run.py --local-videos data --frames-per-video 8 --cycles 1` discovered 2 MP4s, then stopped at real preflight because Ollama refused connections for Vision, DeepSeek, Qwen, and Llama. Exit code 2; `mock_used: false`; 0 extracted frames and 0 dataset records. Both source MP4 SHA-256 hashes were unchanged. |
+
+The portable integration test uses test doubles at model boundaries; it does not claim real VLM inference. The real CLI preflight confirms the environment blocks processing honestly when models are unavailable.
+
+Configured Colab command:
+
+```bash
+python3 run.py --local-videos /content/input_videos --frames-per-video 8 --cycles 1
+```
 
 ## Kaggle GPU Readiness
 

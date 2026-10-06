@@ -14,7 +14,7 @@ The video workflow uses yt-dlp and OpenCV. yt-dlp supplies FFmpeg through imagei
 
 The Kaggle setup and first-run notebook are in `kaggle/`. Before leaving a GPU session unattended:
 
-1. Publish the current project source and notebook to the configured GitHub branch. The checked `origin/main` currently contains only five JSON context files, not this application source, so a Kaggle clone will intentionally stop until the source is published.
+1. Clone the published project source from `origin/main` into the Kaggle Notebook.
 2. Create a Kaggle Notebook, enable Internet and a GPU accelerator (T4x2 or better), and add an optional Kaggle Secret named `YOUTUBE_COOKIES` containing Netscape-format cookies if the channel requires authentication.
 3. Set `CHANNEL_URL` in the notebook and run its cells from top to bottom.
 
@@ -53,6 +53,16 @@ python3 main.py --channel "https://www.youtube.com/@CHANNEL/videos" --target-vid
 ```
 
 Keep that cookie file private. Cookie contents are passed only to yt-dlp and are not sent to agents or stored in run reports.
+
+## Run Local MP4 Files
+
+Process every `.mp4` file recursively inside a local directory without YouTube:
+
+```bash
+python3 run.py --local-videos /content/input_videos --frames-per-video 8 --cycles 1
+```
+
+This path requires the real Vision Model and real DeepSeek, Qwen, and Llama agents; it never uses mock. Source videos are read in place and are not deleted or modified. Frames, real visual analysis, checkpoints, visual memory, and image-backed dataset records are written to the configured project output directories. Re-running uses resume checkpoints by default; `--no-resume` forces reprocessing. Local MP4 mode does not start LoRA training.
 
 ## Agent backends
 

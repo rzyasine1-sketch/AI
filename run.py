@@ -7,6 +7,7 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
+from pipeline.local_videos import run_local_videos_pipeline
 from pipeline.real_channel import run_channel_pipeline
 from training.lora_finetune import train_lora
 
@@ -26,8 +27,9 @@ def _save_report(path: Path, report: dict[str, Any]) -> None:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Resumable overnight visual style pipeline")
-    parser.add_argument("--overnight", action="store_true", required=True, help="Run real channel ingestion through the gated LoRA stage")
-    parser.add_argument("--channel", default=os.environ.get("CHANNEL_URL"), help="YouTube channel URL; may be set with CHANNEL_URL")
+    parser.add_argument("--overnight", action="store_true", help="Run real channel ingestion through the gated LoRA stage")
+    parser.add_argument("--channel", help="YouTube channel URL; may be set with CHANNEL_URL")
+    parser.add_argument("--local-videos", type=Path, help="Analyze every local MP4 in this directory using real VLM/agents")
     parser.add_argument("--cookies", help="Temporary local Netscape-format cookies file; never commit it")
     parser.add_argument("--target-videos", type=int, default=3)
     parser.add_argument("--frames-per-video", type=int, default=8)
@@ -44,12 +46,35 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
-    if not args.channel:
-        parser.error("provide --channel or set CHANNEL_URL")
     if min(args.target_videos, args.frames_per_video, args.cycles, args.inventory_limit, args.min_dataset_samples) < 1:
         parser.error("video, frame, cycle, inventory, and dataset limits must be positive")
     if not 0 <= args.min_style_confidence <= 1:
         parser.error("--min-style-confidence must be between 0 and 1")
+
+    if args.local_videos:
+        if args.channel or args.overnight or args.cookies:
+            parser.error("--local-videos cannot be combined with --channel, --overnight, or --cookies")
+        try:
+            report = run_local_videos_pipeline(
+                args.local_videos,
+                frames_per_video=args.frames_per_video,
+                cycles=args.cycles,
+                resume=not args.no_resume,
+            )
+        except (OSError, RuntimeError, TypeError, ValueError) as exc:
+            report = {"status": "blocked", "mock_used": False, "blocked_by": f"{type(exc).__name__}: {exc}"}
+            _save_report(Path("data/local_videos_run_report.json"), report)
+            print(json.dumps(report, indent=2))
+            return 2
+        _save_report(Path("data/local_videos_run_report.json"), report)
+        print(json.dumps(report, indent=2, sort_keys=True))
+        return 0 if report["status"] == "complete" else 2
+
+    if not args.overnight:
+        parser.error("provide --local-videos for local MP4s or --overnight with a YouTube --channel")
+    args.channel = args.channel or os.environ.get("CHANNEL_URL")
+    if not args.channel:
+        parser.error("provide --channel or set CHANNEL_URL")
 
     try:
         report = run_channel_pipeline(
