@@ -40,13 +40,13 @@ The temporary AVI/JPEG checks validate the local decoding component only. They a
 | Notebook format and code syntax | PASS (STATIC) | `kaggle/train_pipeline.ipynb` is valid nbformat 4 JSON; all 11 cells carry `metadata.language` and `metadata.id`; each Python cell parses. Kaggle cells were not executed here. |
 | Setup script syntax | PASS (STATIC) | `bash -n setup.sh` passes. No GPU runtime or model was installed in this Codespace. |
 | Kaggle GPU/VRAM/disk | NOT RUN | Codespace has no NVIDIA GPU. Notebook checks GPU presence, per-device VRAM, and free disk before installing or pulling models. |
-| Cloneable project source | BLOCKED | `git ls-tree -r --name-only origin/main` contains only five JSON context files; current application files are local untracked files. Publish the project source and notebook to the configured branch before Kaggle can clone them. |
+| Cloneable project source | PASS | Commit `9b1f3fe5a8d249cf734ff661e746d0c917647a0f` was pushed to `origin/main`; `git ls-tree -r --name-only origin/main` contains all requested application, test, setup, documentation, and Kaggle files. Large media, weights, cookies, and secrets are excluded. |
 | YouTube cookies | MANUAL | Enable Kaggle Internet. If anonymous video downloads are denied, add a Kaggle Secret `YOUTUBE_COOKIES`; notebook writes it only to a temporary mode-0600 file and deletes it after invocation. |
 | VLM and agents | NOT RUN | Notebook chooses Qwen3-VL 2B for T4-class GPUs or 4B when one GPU has >=24 GiB, pulls models sequentially, then verifies installed Vision capability and each agent model. No Kaggle Ollama/VLM inference was run. |
 | Overnight defaults | CONFIGURED | `run.py --overnight` defaults to 3 videos, 8 frames/video, 1 cycle; all are configurable. Each video download is temporary; analysis, agents, memory, and dataset have resume checkpoints. |
 | LoRA training | NOT RUN | Training is gated behind >=100 image-backed records, non-empty Llama-approved rules, and mean style confidence >=0.75. The initial 3x8 trial should skip training. Actual base-model access, GPU fit, epoch checkpoint, and resume remain unverified. |
 
-Manual steps before leaving Kaggle unattended: publish this local source to GitHub; create/configure the Kaggle Notebook; enable Internet and T4x2-or-better GPU; set `CHANNEL_URL`; add `YOUTUBE_COOKIES` if required; accept the Stable Diffusion base-model license and set `HF_TOKEN` only if Hugging Face requires it. A real run is ready only after the notebook completes its final dataset/image/checkpoint validations.
+Manual steps before leaving Kaggle unattended: create/configure the Kaggle Notebook from the pushed source; enable Internet and T4x2-or-better GPU; set `CHANNEL_URL`; add `YOUTUBE_COOKIES` if required; accept the Stable Diffusion base-model license and set `HF_TOKEN` only if Hugging Face requires it. Kaggle GPU, YouTube access, VLM/agent inference, and LoRA have not been exercised from this Codespace. A real unattended run is ready only after the notebook completes its final dataset/image/checkpoint validations.
 
 ## Local MP4 Visual Verification
 
